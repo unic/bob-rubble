@@ -4,7 +4,7 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
 
 Describe "Get rubble pattern" {
   Context "replacements" {
-    $pattern = Get-RubblePattern "Demo;;Demo2" @{"Demo"= "Replaced"; "Demo2"= "Replaced2"}
+    $pattern = Get-RubblePattern 'Demo;;Before$Demo2After' @{"Demo"= "Replaced"; '$Demo2'= "Replaced2"}
     It "Should have removed entries" {
       $pattern.Count | Should Be 2
     }
@@ -13,7 +13,7 @@ Describe "Get rubble pattern" {
     }
 
     It "Should have replaced demo2" {
-      $pattern[1] | Should Be "Replaced2"
+      $pattern[1] | Should Be "BeforeReplaced2After"
     }
   }
 }

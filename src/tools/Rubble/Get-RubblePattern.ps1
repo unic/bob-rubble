@@ -12,7 +12,7 @@ function Get-RubblePattern
         $patterns = $patterns | % {
           $item = $_
           foreach($key in $Replacement.Keys) {
-            $item = $item -replace $key, $Replacement[$key]
+            $item = $item -replace ([Regex]::Escape($key)), $Replacement[$key]
           }
           $item
         }

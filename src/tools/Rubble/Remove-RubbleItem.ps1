@@ -9,13 +9,20 @@ function Remove-RubbleItem
   )
   Process
   {
-    $Path = $Path.TrimEnd("\") + "\"
+    $Folder = $Folder.TrimEnd("\") + "\"
 
+    $itemsToKeep = @()
+    foreach($patt in $Pattern) {
+      foreach($subFolder in (ls $Folder -recurse | Where {$_.PSIsContainer})) {
+        if($subFolder.FullName.Replace($Folder, "") -like $patt) {
+          $itemsToKeep += $subFolder.FullName
+        }
+      }
+    }
     foreach($item in (ls "$Folder" -Recurse | Where {$_.PSIsContainer -eq $true})) {
-      $relativePath = $item.FullName -replace  ([Regex]::Escape($Path)), ""
       $delete = $true;
-      foreach($keep in $Pattern) {
-        if($relativePath -repalce ($Folder, "") -like $keep) {
+      foreach($keep in $itemsToKeep) {
+        if($keep.StartsWith($item.FullName)) {
           $delete = $false
           break;
         }
