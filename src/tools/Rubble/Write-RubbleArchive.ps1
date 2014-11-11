@@ -1,5 +1,3 @@
-[System.Reflection.Assembly]::LoadFrom("$PSScriptRoot\SharpZipLib\lib\20\ICSharpCode.SharpZipLib.dll") | Out-Null
-
 function Write-RubbleArchive
 {
   [CmdletBinding()]
