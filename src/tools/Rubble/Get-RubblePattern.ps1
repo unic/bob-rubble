@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+Transforms a string with patterns and placeholders to an array of patterns
+
+.DESCRIPTION
+Transforms a string with multiple patterns and placeholders to an  array of patterens.
+All patterns must be separated by an ';'.
+Replacements are simple string replacemnts. Every occurence of a specific key
+will be replaced by the specified value.
+
+
+.PARAMETER Pattern
+A semicolon separated list of patterns.
+
+.PARAMETER Replacement
+A hashtable of replacement. Every occurence of a specific key
+will be replaced by the specified value.
+
+.EXAMPLE
+Get-RubblePattern "#role.config;env.config" @{"#role" = "myrole"; "env" = "myenv"}
+This returns `@("myrole.config", "myenv.config")`
+#>
 function Get-RubblePattern
 {
   [CmdletBinding()]
