@@ -1,3 +1,26 @@
+<#
+.SYNOPSIS
+Copies items in a folder based on a pattern to a specific location.
+
+.DESCRIPTION
+Copies files from a specific location to another.
+Optionally patterns can be specified, to only copy a subset of files.
+
+.PARAMETER Path
+The path to copy from.
+
+.PARAMETER Destination
+The path to copy to.
+
+
+.PARAMETER Pattern
+An array of patterns. If specified only files matching this patternm, will be copied.
+A pattern must be in the format an PowerShell `-like` argument.
+
+.EXAMPLE
+Copy-RubbleItem -Path D:\source -Destination d:\target  -Pattern *.config, "App_Config\*\*.example"
+
+#>
 function Copy-RubbleItem
 {
   [CmdletBinding()]
