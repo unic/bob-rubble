@@ -4,8 +4,8 @@ Transforms a string with patterns and placeholders to an array of patterns
 
 .DESCRIPTION
 Transforms a string with multiple patterns and placeholders to an  array of patterens.
-All patterns must be separated by an ';'.
-Replacements are simple string replacemnts. Every occurence of a specific key
+All patterns must be separated by a ';'.
+Replacements are simple string replacements. Every occurence of a specific key
 will be replaced by the specified value.
 
 
