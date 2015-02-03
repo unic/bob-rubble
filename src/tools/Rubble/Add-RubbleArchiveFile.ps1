@@ -36,7 +36,7 @@ function Add-RubbleArchiveFile
         $zip = New-Object ICSharpCode.SharpZipLib.Zip.ZipFile $ArchivePath
         $zip.BeginUpdate()
 
-        $parentPath = Split-Path $Path -Parent
+        $parentPath = (Resolve-Path (Split-Path $Path -Parent))
 
         if((Get-Item $Path) -is [System.IO.DirectoryInfo]) {
             ls $Path -Recurse -File | % {
