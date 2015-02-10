@@ -12,7 +12,7 @@ The path to add to the ZIP file.
 The path to the ZIP file.
 
 .EXAMPLE
-Add-RubbleArchiveFile -Path D:\temp\example D:\temp\exmple.zip
+Add-RubbleArchiveFile -Path D:\temp\example D:\temp\example.zip
 
 #>
 function Add-RubbleArchiveFile
