@@ -17,4 +17,5 @@ function ResolvePath() {
 }
 
 $zipDll = ResolvePath -PackageId "SharpZipLib" -RelativePath "lib\20\ICSharpCode.SharpZipLib.dll"
-[System.Reflection.Assembly]::LoadFrom($zipDll.Path) | Out-Null
+$zipDllBytes = [System.IO.File]::ReadAllBytes($zipDll.Path)
+[System.Reflection.Assembly]::Load($zipDllBytes) | Out-Null
