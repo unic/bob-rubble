@@ -39,7 +39,6 @@ function Copy-RubbleItem
       $files = @()
       foreach($file in (ls $Path -Recurse )) {
         $relativePath = $file.FullName -replace  ([Regex]::Escape($Path)), ""
-        Write-Verbose $relativePath
         foreach($filter in $Pattern) {
           if($relativePath -like $filter) {
             $files += $relativePath
