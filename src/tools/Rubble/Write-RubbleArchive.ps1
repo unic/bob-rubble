@@ -1,5 +1,19 @@
-[System.Reflection.Assembly]::LoadFrom("$PSScriptRoot\SharpZipLib\lib\20\ICSharpCode.SharpZipLib.dll") | Out-Null
+<#
+.SYNOPSIS
+Writes the content of a folder to a ZIP file.
+.DESCRIPTION
+Writes the content of a folder to a ZIP file.
 
+.PARAMETER Path
+The folder to pack.
+
+.PARAMETER OutputLocation
+The ZIP file to write.
+
+.EXAMPLE
+Write-RubbleArchive D:\example D:\example.zip
+
+#>
 function Write-RubbleArchive
 {
   [CmdletBinding()]
