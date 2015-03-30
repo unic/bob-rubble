@@ -29,7 +29,9 @@ function Copy-RubbleItem
       [string] $Path,
       [Parameter(Mandatory=$true)]
       [string] $Destination,
-      [String[]] $Pattern
+      [String[]] $Pattern,
+      [ValidateSet("CopyAll", "DoNothing")]
+      [String] $NoFilesAction = "CopyAll"
   )
   Process
   {
@@ -64,7 +66,7 @@ function Copy-RubbleItem
         cp (Join-Path $Path $_) $target
       }
     }
-    else {
+    elseif($NoFilesAction -eq "CopyAll") {
       cp $Path\* $Destination -Recurse
     }
   }
