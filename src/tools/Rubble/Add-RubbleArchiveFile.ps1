@@ -39,7 +39,7 @@ function Add-RubbleArchiveFile
         $parentPath = (Resolve-Path (Split-Path $Path -Parent))
 
         if((Get-Item $Path) -is [System.IO.DirectoryInfo]) {
-            ls $Path -Recurse -File | % {
+            ls $Path -Recurse | ? { -not $_.PSIsContainer } | % {
                 $relativePath = $_.FullName.Replace($parentPath, "")
                 $zip.Add($_.FullName, $relativePath)
             }
