@@ -14,11 +14,14 @@ The path to the ZIP file.
 .PARAMETER RelativeToPath
 An optional parameter which specifies relative to which folder the items get added.
 So when adding D:\a\b\c\d\e with RelativeToPath D:\a\b the path inside the ZIP file 
-will be c\b\e
+will be c\d\e
 If its not specified the parent of $Path will be taken.
 
 .EXAMPLE
 Add-RubbleArchiveFile -Path D:\temp\example D:\temp\example.zip
+
+.EXAMPLE
+Add-RubbleArchiveFile -Path D:\temp\example\a\b -ArchvivePath D:\temp\example.zip -RelativeToPath D:\temp\example
 
 #>
 function Add-RubbleArchiveFile
