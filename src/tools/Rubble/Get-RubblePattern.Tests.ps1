@@ -18,7 +18,7 @@ Describe "Get rubble pattern" {
     }
   }
   Context "iterated replacements" {
-    $pattern = Get-RubblePattern '$role.$environment;$role' @{'$environment'= "test"; '$role'= @("role2", "role1")}
+    $pattern = Get-RubblePattern '$role.$environment;$role' @{'$environment'= "test"; '$role'= @("role1","role2")}
     
     It "Should have replaced role and env" {
       $pattern[0] | Should Be "role1.test"
