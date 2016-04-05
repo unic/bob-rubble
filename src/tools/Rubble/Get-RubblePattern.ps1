@@ -55,13 +55,17 @@ function Get-RubblePattern
           foreach($key in $Replacement.Keys) {
               $value =  $Replacement[$key]
               if($value -is [system.array]) {
-                  $value = $value | sort
+                  
+                  $newValue = New-Object System.Collections.ArrayList 
+                  $newValue.AddRange($value)
+                  
+                  $value = $newValue
 
                   # this returns every possible combination of $array
                   $combiner = "."
                     function combine($array, $i) {
                         $array[$i]
-                        for($n = $i + 1; $n -lt $array.Length; $n++) {
+                        for($n = $i + 1; $n -lt $array.Count; $n++) {
                             combine $array $n | % {
                                 $array[$i] + $combiner + $_
                             }
@@ -69,8 +73,8 @@ function Get-RubblePattern
                     }
 
                     $values = @()
-
-                    for($i = 0; $i -lt $value.Length; $i++) {
+                    for($i = 0; $i -lt $value.Count; $i++) {
+                        
                         $values += @((combine $value $i) | % {$_})
                     }
 
