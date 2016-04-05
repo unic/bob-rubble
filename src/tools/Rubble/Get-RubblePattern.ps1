@@ -29,15 +29,78 @@ function Get-RubblePattern
       [System.Collections.Hashtable] $Replacement = @{}
   )
   Process
-  {
-        $patterns = $Pattern.Split(';') | % {$_.Trim()} | ? {$_ -ne ""}
-        $patterns = $patterns | % {
-          $item = $_
-          foreach($key in $Replacement.Keys) {
-            $item = $item -replace ([Regex]::Escape($key)), $Replacement[$key]
-          }
-          $item
+  { 
+        function combineNd($array, $n) {
+            $subArray = @($array[$n])
+            
+            $return = New-Object System.Collections.ArrayList 
+
+            for($i = 0; $i -lt $subArray.Count; $i++) {
+                if(($n + 1) -eq $array.Count) {
+                    $return.Add($subArray[$i]) | Out-Null
+                   
+                }
+                else {
+                    $value = @(combineNd $array ($n + 1))
+                    $value | % {
+                        $return.Add(@($subArray[$i], $_)) | Out-Null
+                    }
+                }
+            }
+
+             $return
         }
-        $patterns
+
+        $replacements =  & {
+          foreach($key in $Replacement.Keys) {
+              $value =  $Replacement[$key]
+              if($value -is [system.array]) {
+                  $value = $value | sort
+
+                  # this returns every possible combination of $array
+                  $combiner = "."
+                    function combine($array, $i) {
+                        $array[$i]
+                        for($n = $i + 1; $n -lt $array.Length; $n++) {
+                            combine $array $n | % {
+                                $array[$i] + $combiner + $_
+                            }
+                        }
+                    }
+
+                    $values = @()
+
+                    for($i = 0; $i -lt $value.Length; $i++) {
+                        $values += @((combine $value $i) | % {$_})
+                    }
+
+                    ,@($values)
+              }
+              else {
+                  ,@($value)
+              }
+          }
+        }
+
+        $combinedReplacements   = New-Object System.Collections.ArrayList
+        foreach($value in @(combineNd $replacements 0)) { 
+            $combinedReplacements.Add(@($value | % {$_})) | Out-Null
+        }
+
+
+        $patterns = $Pattern.Split(';') | % {$_.Trim()} | ? {$_ -ne ""}
+        $patterns | % {
+            for($j = 0; $j -lt  $combinedReplacements.Count; $j++) {
+                $item = $_
+                $replacementValue = $combinedReplacements[$j]
+                $i = 0
+                foreach($key in $Replacement.Keys) {
+                    $value = $replacementValue[$i]
+                    $item = $item -replace ([Regex]::Escape($key)),$value
+                    $i++;
+                }
+                $item
+            }
+        }
   }
 }
