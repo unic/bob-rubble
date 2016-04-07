@@ -109,6 +109,6 @@ function Get-RubblePattern
                 }
                 $item
             }
-        }
+        }  | select -uniq
   }
 }
