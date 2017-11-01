@@ -2,7 +2,7 @@ $Invocation = (Get-Variable MyInvocation -Scope 0).Value
 $PSScriptRoot = Split-Path $Invocation.MyCommand.Path
 
 $paketFolder = "$PSScriptRoot\.paket"
-$paketBoot = "$paketFolder\paket.bootstrapper.exe"
+$paketBoot = "$paketFolder\paket.bootstrapper.exe --prefer-nuget"
 
 & $paketBoot
 & "$paketFolder\paket.exe" restore
