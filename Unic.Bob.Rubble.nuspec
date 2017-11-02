@@ -2,15 +2,16 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Unic.Bob.Rubble</id>
-    <version>$VERSION$</version>
     <authors>Unic AG</authors>
+    <version>$VERSION$</version>
+    <owners>Unic AG</owners>
+    <iconUrl>https://github.com/unic/unic/raw/master/unic_nuget.png</iconUrl>
+    <projectUrl>https://github.com/unic/bob-rubble</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Rubble is internal file system library</description>
-    <dependencies>
-    </dependencies>
+    <description>Rubble is a powershell based file system library for Bob: Open Build</description>
   </metadata>
   <files>
     <file src="src\**" />
-    <file src="packages\**" target="tools\packages" exclude="**\package\services\metadata\core-properties\**;**\Unic.Bob.Keith\**;**\pester\**" />
+    <file src="packages\SharpZipLib\lib\**" target="tools\packages\SharpZipLib\lib\" />
   </files>
 </package>

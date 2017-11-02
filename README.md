@@ -1,10 +1,9 @@
+![Build](https://ci.appveyor.com/api/projects/status/github/unic/bob-rubble?svg=true)
+
 # Rubble
 
-Rubble is the common filesystem library of the Bob crew. Copying and deleting folder and files based on patterns is his speciallity.
-
-### Build
-[![Build](https://teamcity.unic.com/httpAuth/app/rest/builds/buildType:Sitecore_Frameworks_Bob_Rubble_Build/statusIcon)](https://teamcity.unic.com/viewType.html?buildTypeId=Sitecore_Frameworks_Bob_Rubble_Build)
+Rubble is the common filesystem library of the Bob crew. Copying and deleting folders and files based on patterns is his speciallity.
 
 ## Documentation
 
-<https://teamcity.unic.com/repository/download/Sitecore_Frameworks_Bob_TheBook_BuildTheBook/.lastSuccessful/Rubble/README.html>
+See [latest documentation](https://unic.github.io/bob-rubble)
