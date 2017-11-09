@@ -1,4 +1,7 @@
-![Build](https://ci.appveyor.com/api/projects/status/github/unic/bob-rubble?svg=true)
+[![build status][1]][2]
+
+[1]: https://ci.appveyor.com/api/projects/status/github/unic/bob-rubble?svg=true
+[2]: https://ci.appveyor.com/api/projects/status/github/unic/bob-rubble
 
 # Rubble
 
