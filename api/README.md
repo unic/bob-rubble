@@ -17,7 +17,7 @@ Copies items in a folder based on a pattern to a specific location.
 ##  Expand-RubbleArchive
 Extracts a ZIP file.    
     
-    Expand-RubbleArchive [-Path] <String> [-OutputLocation] <String> [<CommonParameters>]
+    Expand-RubbleArchive [-Path] <String> [-OutputLocation] <String> [[-FileFilter] <String>] [<CommonParameters>]
 
 
  [Read more](Expand-RubbleArchive.md)
